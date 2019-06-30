@@ -1,0 +1,54 @@
+== REST Template for Golang
+
+=== Requirements
+ - Go version : 1.12 or newer
+ - OS : Linux
+ - Git version : 1.9 or newer
+
+=== Preparing the environment
+Download go binaries in /tmp folder
+[source,shell]
+----
+wget -P /tmp https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
+sha256sum /tmp/go1.12.1.6.linux-amd64.tar.gz
+
+dbcf71a3c1ea53b8d54ef1b48c85a39a6c9a935d01fc8291ff2b92028e59913c  go1.12.6.linux-amd64.tar.gz
+----
+Remove current go installation
+[source,shell]
+----
+sudo mv /usr/local/go /tmp/
+----
+Install go
+[source,shell]
+----
+sudo tar -xvf /tmp/go1.12.1.6.linux-amd64.tar.gz -C /usr/local
+sudo chown -R root:root /usr/local/go
+----
+Set ENV variables
+[source,shell]
+----
+# Go Root
+export GOROOT=/usr/local/go
+
+# Go Path
+export GOPATH=$HOME/projects/golang
+
+# PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+----
+
+=== Model
+
+=== Web framework
+
+=== ORM
+
+=== Dependency management
+
+
+=== Unit testing
+
+=== Integration testing
+
+=== Dockerising
