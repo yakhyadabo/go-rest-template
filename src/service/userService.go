@@ -2,13 +2,26 @@ package service
 
 import (
 	"github.com/yakhyadabo/go-rest-template/src/repository"
+	"github.com/yakhyadabo/go-rest-template/src/model"
 )
 
-type UserService struct {
+type UserService interface{
+  ListUser() ([]*User, error)
+  RegisterUser(email string) error
+}
+
+type userService struct {
   repo repository.UserRepository
 }
 
-func (s *UserService) Duplicated(email string) error {
+// Dependency Injection ...
+func NewUserService(repo repository.UserRepository) *userService {
+  return &userService {
+      repo:    repo,
+  }
+}
+
+func (s *userService) Duplicated(email string) error {
   user, err := s.repo.FindByEmail(email)
   if user != nil {
       return fmt.Errorf("%s already exists", email)
@@ -16,5 +29,31 @@ func (s *UserService) Duplicated(email string) error {
   if err != nil {
       return err
   }
+  return nil
+}
+
+func (s *userService) ListUser() ([]*User, error) {
+  users, err := s.repo.FindAll()
+  if err != nil {
+      return nil, err
+  }
+  return toUser(users), nil
+}
+
+func (s *userService) RegisterUser(email string) error {
+  uid, err := uuid.NewRandom()
+  if err != nil {
+      return err
+  }
+
+  if err := s.Duplicated(email); err != nil {
+      return err
+  }
+
+  user := model.NewUser(uid.String(), email)
+  if err := s.repo.Save(user); err != nil {
+      return err
+  }
+
   return nil
 }
