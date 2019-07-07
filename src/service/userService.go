@@ -2,11 +2,13 @@ package service
 
 import (
 	"github.com/yakhyadabo/go-rest-template/src/repository"
-	"github.com/yakhyadabo/go-rest-template/src/model"
+  "github.com/yakhyadabo/go-rest-template/src/model"
+  "fmt"
+  "github.com/google/uuid"
 )
 
 type UserService interface{
-  ListUser() ([]*User, error)
+  ListUser() ([]*model.User, error)
   RegisterUser(email string) error
 }
 
@@ -32,12 +34,12 @@ func (s *userService) Duplicated(email string) error {
   return nil
 }
 
-func (s *userService) ListUser() ([]*User, error) {
+func (s *userService) ListUser() ([]*model.User, error) {
   users, err := s.repo.FindAll()
   if err != nil {
       return nil, err
   }
-  return toUser(users), nil
+  return users, nil
 }
 
 func (s *userService) RegisterUser(email string) error {
