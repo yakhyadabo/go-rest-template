@@ -8,7 +8,6 @@ import (
 	"encoding/json"
 	u "github.com/yakhyadabo/go-rest-template/src/utils"
 	"log"
-	"github.com/google/uuid"
 	// "github.com/gorilla/mux"
 )
 
@@ -20,14 +19,6 @@ var CreateUser = func(w http.ResponseWriter, r *http.Request) {
 		u.Respond(w, u.Message(false, "Error while decoding request body"))
 		return
 	}
-
-	uid, err := uuid.NewRandom()
-	if err != nil {
-		log.Println("error : ", err)
-		return
-	}
-
-	user.SetID(uid.String())
 
 	repo := repository.NewUserRepository()
 	// service := service.NewUserService(repo)
@@ -48,6 +39,11 @@ var GetUser = func(w http.ResponseWriter, r *http.Request) {
 
 	if error != nil {
 		u.Respond(w, u.Message(false, "There was an error in your repository"))
+		return
+	}
+
+	if user == nil {
+		u.Respond(w, u.Message(false, "No user with login " + login + " found"))
 		return
 	}
 
