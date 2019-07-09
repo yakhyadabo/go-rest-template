@@ -23,20 +23,11 @@ func NewUserRepository() *userRepository {
   }
 }
 
-func (r *userRepository) Save(user *model.User) error {
-  r.mu.Lock()
-  defer r.mu.Unlock()
+func (r *userRepository) Save(user *model.User)  (*model.User, error) {
 
-  //r.users[user.GetID()] = model.NewUser(user.GetID(), user.GetEmail())
-
+  GetDB().Create(user)
   
-  r.users[user.GetLogin()] = &model.User{
-      Id: user.GetID(),
-      Login: user.GetLogin(),
-      Password: user.GetPassword(),
-      Email: user.GetEmail(),
-  }
-  return nil
+  return user, nil
 }
 
 func (r *userRepository) FindAll() ([]*model.User, error) {
@@ -45,19 +36,19 @@ func (r *userRepository) FindAll() ([]*model.User, error) {
   users := make([]*model.User, len(r.users))
   i := 0
   for _, user := range r.users {
-      users[i] = model.NewUser(user.GetID(), user.GetLogin(), user.GetPassword(), user.GetEmail())
+      users[i] = model.NewUser(user.GetLogin(), user.GetPassword(), user.GetEmail())
       i++
   }
   return users, nil
 }
 
 func (r *userRepository) FindByLogin(login string) (*model.User, error) {
-  r.mu.Lock()
-  defer r.mu.Unlock()
-  for _, user := range r.users {
-      if user.GetLogin() == login {
-          return model.NewUser(user.GetID(), user.GetLogin(),user.GetPassword(), user.GetEmail()), nil
-      }
-  }
-  return nil, nil
+
+  user := &model.User{}
+	err := GetDB().Table("users").Where("login = ?", login).First(user).Error
+	if err != nil {
+		return nil,nil
+	}
+  return user, nil
+
 }
