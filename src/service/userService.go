@@ -4,7 +4,6 @@ import (
 	"github.com/yakhyadabo/go-rest-template/src/repository"
   "github.com/yakhyadabo/go-rest-template/src/model"
   "fmt"
-  "github.com/google/uuid"
 )
 
 type UserService interface{
@@ -42,6 +41,7 @@ func (s *userService) ListUser() ([]*model.User, error) {
   return users, nil
 }
 
+/*
 func (s *userService) RegisterUser(email string) error {
   uid, err := uuid.NewRandom()
   if err != nil {
@@ -58,4 +58,4 @@ func (s *userService) RegisterUser(email string) error {
   }
 
   return nil
-}
+} */
