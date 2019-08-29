@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/yakhyadabo/go-rest-template/src/model"
+	"github.com/yakhyadabo/go-rest-template/model"
 )
 
 type EmployeeRepository interface {
