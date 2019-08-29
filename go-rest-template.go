@@ -6,7 +6,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/yakhyadabo/go-rest-template/src/controller"
+	"github.com/yakhyadabo/go-rest-template/controller"
 )
 
 func main() {
