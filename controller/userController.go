@@ -1,13 +1,13 @@
 package controller
 
 import (
-	// "github.com/yakhyadabo/go-rest-template/src/service"
-	"net/http"
-	"github.com/yakhyadabo/go-rest-template/src/model"
-	"github.com/yakhyadabo/go-rest-template/src/repository"
 	"encoding/json"
-	u "github.com/yakhyadabo/go-rest-template/src/utils"
 	"log"
+	"net/http"
+
+	"github.com/yakhyadabo/go-rest-template/model"
+	"github.com/yakhyadabo/go-rest-template/repository"
+	u "github.com/yakhyadabo/go-rest-template/utils"
 	// "github.com/gorilla/mux"
 )
 
@@ -43,7 +43,7 @@ var GetUser = func(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if user == nil {
-		u.Respond(w, u.Message(false, "No user with login " + login + " found"))
+		u.Respond(w, u.Message(false, "No user with login "+login+" found"))
 		return
 	}
 

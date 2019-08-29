@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/yakhyadabo/go-rest-template/src/model"
-	"github.com/yakhyadabo/go-rest-template/src/repository"
-	u "github.com/yakhyadabo/go-rest-template/src/utils"
+	"github.com/yakhyadabo/go-rest-template/model"
+	"github.com/yakhyadabo/go-rest-template/repository"
+	u "github.com/yakhyadabo/go-rest-template/utils"
 )
 
 var CreateEmployee = func(w http.ResponseWriter, r *http.Request) {
