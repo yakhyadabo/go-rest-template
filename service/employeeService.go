@@ -3,8 +3,8 @@ package service
 import (
 	"fmt"
 
-	"github.com/yakhyadabo/go-rest-template/src/model"
-	"github.com/yakhyadabo/go-rest-template/src/repository"
+	"github.com/yakhyadabo/go-rest-template/model"
+	"github.com/yakhyadabo/go-rest-template/repository"
 )
 
 type EmployeeService interface {
