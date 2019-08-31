@@ -44,6 +44,13 @@ Load the new changes
 source ~/.profile
 ----
 
+=== Workspace 
+Until the release of *Go 1.11* all Go projects had to be created in *$GOPATH* which contains the following sub directories : 
+
+1. *$GOPATH/src* : Contains all Go source files.
+2. *$GOPATH/bin* : It's where Go tool builds and installs binaries.
+3. *$GOPATH/pkg* : The folder of the Go package archives
+
 === Hello World
 Create _hello-world.go_ as follow
 [source,go]
