@@ -58,10 +58,9 @@ Create and move to project source files folder
 mkdir -p $GOPATH/src/github.com/your_username/hello  && cd "$_"
 ----
 
-Create _hello-world.go_ as follow
+Create _hello-world.go_ with the following content. 
 [source,go]
 ----
-cat <<EOF > hello-world.go
 package main
 
 import "fmt"
@@ -69,7 +68,6 @@ import "fmt"
 func main() {
   fmt.Println("hello world")
 }
-EOF
 ----
 Run the program
 [source,go]
@@ -85,4 +83,30 @@ Run the binary
 [source,go]
 ----
 ./hello-world.go
+----
+
+=== Hello world web
+Create and move to project source files folder
+[source,go]
+----
+mkdir -p $GOPATH/src/github.com/your_username/hello-web  && cd "$_"
+----
+Create _hello-world-web.go_ with the following content. 
+[source,go]
+----
+package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func helloWorld(w http.ResponseWriter, r *http.Request){
+    fmt.Fprintf(w, "Hello World")
+}
+
+func main() {
+    http.HandleFunc("/", helloWorld)
+    http.ListenAndServe(":8080", nil)
+}
 ----
