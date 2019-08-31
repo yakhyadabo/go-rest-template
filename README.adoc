@@ -52,6 +52,12 @@ Until the release of *Go 1.11* all Go projects had to be created in *$GOPATH* wh
 3. *$GOPATH/pkg* : The folder of the Go package archives
 
 === Hello World
+Create and move to project source files folder
+[source,go]
+----
+mkdir -p $GOPATH/src/github.com/your_username/hello  && cd "$_"
+----
+
 Create _hello-world.go_ as follow
 [source,go]
 ----
