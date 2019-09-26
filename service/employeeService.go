@@ -8,8 +8,8 @@ import (
 )
 
 type EmployeeService interface {
-	ListUser() ([]*model.User, error)
-	RegisterUser(email string) error
+	ListEmployee() ([]*model.Employee, error)
+	RegisterEmployee(email string) error
 }
 
 type employeeService struct {
