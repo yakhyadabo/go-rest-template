@@ -87,7 +87,7 @@ Run the binary
 
 === Hello world web
 Create and move to project source files folder
-[source,go]
+[source,shell]
 ----
 mkdir -p $GOPATH/src/github.com/your_username/hello-web  && cd "$_"
 ----
